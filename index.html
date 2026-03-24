@@ -1,11 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pogoda</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pogoda</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+<div class="app" id="app">
+  <div class="topbar">
+    <div class="tb-dots">
+      <div class="tb-dot" style="background:#ff5f57"></div>
+      <div class="tb-dot" style="background:#ffbd2e"></div>
+      <div class="tb-dot" style="background:#28c840"></div>
+    </div>
+    <div class="tb-title">Pogoda</div>
+  </div>
+
+  <div class="body">
+    <div class="sidebar">
+      <div class="sb-section">Moje miasta</div>
+      <div class="city-list" id="cityList"></div>
+      <div class="add-city-form">
+        <input type="text" id="cityInput" placeholder="+ Dodaj miasto..." autocomplete="off">
+        <div class="city-suggestions" id="suggestions"></div>
+      </div>
+    </div>
+
+    <div class="main">
+      <div id="heroBlock"></div>
+      <div class="forecast-strip" id="forecastStrip"></div>
+      <div class="section-title">Szczegóły pogody</div>
+      <div class="tiles-grid" id="tilesGrid"></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-title">Dodaj kafelek</div>
+    <div class="modal-grid" id="modalGrid"></div>
+    <div class="modal-cancel" id="modalCancel">Gotowe</div>
+  </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>

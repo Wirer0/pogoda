@@ -1,0 +1,268 @@
+/* Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Body */
+body {
+  background: #07111f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: -apple-system, sans-serif;
+  padding: 20px;
+}
+
+/* Aplikacja */
+.app {
+  background: #0d1b2e;
+  width: 960px;
+  height: 640px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Topbar */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  background: #0a1525;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.08);
+}
+
+.tb-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.tb-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.tb-title {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 13px;
+  font-weight: 500;
+  margin-left: 4px;
+}
+
+/* Body sections */
+.body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Sidebar (lista miast)*/
+.sidebar {
+  width: 220px;
+  background: #0a1525;
+  border-right: 0.5px solid rgba(255, 255, 255, 0.07);
+  display: flex;
+  flex-direction: column;
+  padding: 12px 0;
+}
+
+.sb-section {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 8px 16px 4px;
+}
+
+.city-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.city-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px 16px;
+  cursor: pointer;
+  transition: background 0.12s;
+  border-left: 2px solid transparent;
+}
+
+.city-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.city-item.active {
+  background: rgba(255, 255, 255, 0.08);
+  border-left-color: #4a9eff;
+}
+
+.city-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.city-name {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.city-cond {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 11px;
+}
+
+.city-temp {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.city-remove {
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 18px;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  transition: background 0.1s, color 0.1s;
+  flex-shrink: 0;
+}
+
+.city-remove:hover {
+  background: rgba(220, 60, 60, 0.2);
+  color: #ff6b6b;
+}
+
+/* Dodawanie miasta */
+.add-city-form {
+  padding: 10px 12px;
+  border-top: 0.5px solid rgba(255, 255, 255, 0.06);
+  margin-top: auto;
+  position: relative;
+}
+
+.add-city-form input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 0.5px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 7px 10px;
+  color: white;
+  font-size: 12px;
+  outline: none;
+}
+
+.add-city-form input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* Main */
+.main {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+  background: #0d1b2e;
+}
+
+.hero-city {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 32px;
+  font-weight: 300;
+}
+
+.hero-temp {
+  color: white;
+  font-size: 72px;
+  font-weight: 200;
+}
+
+/* Prognoza */
+.forecast-strip {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 0.5px solid rgba(255, 255, 255, 0.08);
+  padding: 14px 16px;
+}
+
+.fc-day {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.fc-label {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.fc-icon {
+  font-size: 18px;
+}
+
+.fc-temp {
+  color: white;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+/* Kafelki */
+.tiles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+}
+
+.tile {
+  background: rgba(255, 255, 255, 0.07);
+  border: 0.5px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 14px 16px;
+  cursor: default;
+  transition: background 0.12s;
+  position: relative;
+}
+
+.tile:hover {
+  background: rgba(255, 255, 255, 0.10);
+}
+
+.tile-remove {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  color: rgba(255, 255, 255, 0.15);
+  font-size: 16px;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.1s, color 0.1s;
+}
+
+.tile-remove:hover {
+  background: rgba(220, 60, 60, 0.25);
+  color: #ff6b6b;
+}
