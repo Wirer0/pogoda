@@ -1,11 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pogoda</title>
+    <title>Pogodowy</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
 </head>
 <body>
-    
+<div class="karta-pogody">
+  <div class="naglowek">
+    <h1>Warszawa</h1>
+    <div class="wyszukiwarka">
+      <input type="text" placeholder="Wpisz miejscowość">
+      <button>🔍</button>
+    </div>
+  </div>
+
+  <div class="glowny-panel">
+    <div class="info-pogoda">
+      <span style="font-size: 4em;">☀️</span>
+      <span class="temperatura">14°C</span> 
+      <div>
+        <strong>Słonecznie</strong><br>
+        Odczuwalna: 13°C<br>
+        Ciśnienie: 1021 hPa | Wiatr: 18 km/h
+      </div>
+    </div>
+
+    <div class="jakosc-powietrza">
+      <div class="kolko">16</div>
+      <div>
+        <small>JAKOŚĆ POWIETRZA</small>
+        <h3>Bardzo dobra</h3>
+        <small>PM 2.5: 38% | PM 10: 21%</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="przyciski-dolne">
+    <button>GODZINA PO GODZINIE</button>
+    <button>DŁUGOTERMINOWA</button>
+    <button>NA ŚWIĘTA</button>
+  </div>
+</div>
+
 </body>
 </html>
