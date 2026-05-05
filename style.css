@@ -245,6 +245,25 @@ body {
 
 .footer-links a:hover { color: white; }
 
+/* --- Opcja przesuwania miast --- */
+.city-item {
+  cursor: grab; 
+}
+
+.city-item:active {
+  cursor: grabbing;
+}
+
+.city-item.dragging {
+  opacity: 0.4;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.city-item.drag-over {
+  border-top: 2px dashed #4a9eff;
+  background: rgba(74, 158, 255, 0.1);
+}
+
 /* --- RESPONSYWNOŚĆ --- */
 
 @media (max-width: 1280px) {
