@@ -11,13 +11,13 @@
 
 <div class="app" id="app">
   <nav class="navbar">
-  <div class="nav-logo"><span>Weather</span></div>
-  <ul class="nav-links">
-    <li><a href="#" class="active">Pulpit</a></li>
-    <li><a href="#">Mapy</a></li>
-    <li><a href="#">Statystyki</a></li>
-    <li><a href="#">Ustawienia</a></li>
-  </ul>
+    <div class="nav-logo"><span>Weather</span></div>
+    <ul class="nav-links">
+      <li><a href="#" class="active">Pulpit</a></li>
+      <li><a href="#">Mapy</a></li>
+      <li><a href="#">Statystyki</a></li>
+      <li><a href="#">Ustawienia</a></li>
+    </ul>
   </nav>
 
   <div class="topbar">
@@ -66,6 +66,36 @@
     <div class="modal-cancel" id="modalCancel"></div>
   </div>
 </div>
+
+<template id="suggestion-template">
+  <div class="suggestion-item"></div>
+</template>
+
+<template id="city-item-template">
+  <div class="city-item" draggable="true">
+    <span class="city-name"></span>
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <div class="city-temp"></div>
+      <div class="city-remove" title="Usuń miasto">&times;</div>
+    </div>
+  </div>
+</template>
+
+<template id="hero-template">
+  <div class="hero-city"></div>
+  <div class="hero-weather-container">
+    <div class="hero-temp"></div>
+    <div class="hero-desc"></div>
+  </div>
+</template>
+
+<template id="tile-template">
+  <div class="tile">
+    <div class="tile-icon"></div>
+    <div class="tile-label"></div>
+    <div class="tile-value"></div>
+  </div>
+</template>
 
 <script src="script.js"></script>
 </body>

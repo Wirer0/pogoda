@@ -15,6 +15,7 @@ const DB_CITIES = [
 
 let cities = JSON.parse(localStorage.getItem("cities")) || [...DB_CITIES];
 let activeCity = cities[0].name;
+let draggedCityIndex = null;
 
 function init() {
     console.log("Aplikacja startuje...");
@@ -33,18 +34,23 @@ function onCityInput(e) {
     const val = e.target.value.trim().toLowerCase();
     const box = document.getElementById("suggestions");
     
-    if (val.length < 1) {
-        box.innerHTML = "";
-        return;
-    }
+    // Szybkie i bezpieczne czyszczenie zawartości
+    box.replaceChildren(); 
+    
+    if (val.length < 1) return;
 
     const wyniki = DB_CITIES.filter(m => m.name.toLowerCase().includes(val));
-    
-    box.innerHTML = wyniki.map(r => `
-        <div class="suggestion-item" onclick="addCityFromSearch('${r.name}')">
-            ${r.name}
-        </div>
-    `).join('');
+    const template = document.getElementById("suggestion-template");
+
+    wyniki.forEach(r => {
+        const clone = template.content.cloneNode(true);
+        const item = clone.querySelector(".suggestion-item");
+        
+        item.textContent = r.name;
+        item.addEventListener("click", () => addCityFromSearch(r.name));
+        
+        box.appendChild(clone);
+    });
 }
 
 function addCityFromSearch(name) {
@@ -56,7 +62,7 @@ function addCityFromSearch(name) {
     }
     
     document.getElementById("cityInput").value = "";
-    document.getElementById("suggestions").innerHTML = "";
+    document.getElementById("suggestions").replaceChildren();
     selectCity(name);
 }
 
@@ -68,61 +74,100 @@ function selectCity(name) {
         renderMain(city);
     }
 }
-let draggedCityIndex = null;
+
 function renderCityList() {
-const list = document.getElementById("cityList");
+    const list = document.getElementById("cityList");
     if (!list) return;
-    list.innerHTML = cities.map((city, index) => `
-        <div class="city-item ${city.name === activeCity ? 'active' : ''}" 
-             draggable="true" 
-             data-index="${index}"
-             onclick="selectCity('${city.name}')">
-            <span class="city-name">${city.name}</span>
-            <div class="city-temp">${city.temp}°</div>
-        </div>
-    `).join('');
-    const items = list.querySelectorAll('.city-item');
-    items.forEach(item => {
+    
+    list.replaceChildren();
+    const template = document.getElementById("city-item-template");
+
+    cities.forEach((city, index) => {
+        const clone = template.content.cloneNode(true);
+        const item = clone.querySelector(".city-item");
+        
+        if (city.name === activeCity) {
+            item.classList.add('active');
+        }
+        item.dataset.index = index;
+        
+        item.querySelector(".city-name").textContent = city.name;
+        item.querySelector(".city-temp").textContent = `${city.temp}°`;
+
+        const removeBtn = item.querySelector(".city-remove");
+        removeBtn.addEventListener("click", (e) => {
+            e.stopPropagation(); 
+            removeCity(city.name);
+        });
+
+        item.addEventListener("click", () => selectCity(city.name));
         item.addEventListener('dragstart', handleDragStart);
         item.addEventListener('dragover', handleDragOver);
         item.addEventListener('dragenter', handleDragEnter);
         item.addEventListener('dragleave', handleDragLeave);
         item.addEventListener('drop', handleDrop);
         item.addEventListener('dragend', handleDragEnd);
+
+        list.appendChild(clone);
     });
+}
+
+function removeCity(name) {
+    if (cities.length <= 1) {
+        alert("Nie możesz usunąć ostatniego miasta na liście!");
+        return;
+    }
+    cities = cities.filter(c => c.name !== name);
+    localStorage.setItem("cities", JSON.stringify(cities));
+
+    if (activeCity === name) {
+        selectCity(cities[0].name);
+    } else {
+        renderCityList();
+    }
 }
 
 function renderMain(city) {
     const hero = document.getElementById("heroBlock");
     if (hero) {
-        hero.innerHTML = `
-            <div class="hero-city">${city.name}</div>
-            <div style="display:flex;align-items:flex-end;gap:16px">
-                <div class="hero-temp">${city.temp}°</div>
-                <div style="padding-bottom:16px;color:rgba(255,255,255,0.7);font-size:18px">${city.icon} ${city.desc}</div>
-            </div>`;
+        hero.replaceChildren();
+        const heroTemplate = document.getElementById("hero-template");
+        
+        if (heroTemplate) {
+            const clone = heroTemplate.content.cloneNode(true);
+            clone.querySelector(".hero-city").textContent = city.name;
+            clone.querySelector(".hero-temp").textContent = `${city.temp}°`;
+            clone.querySelector(".hero-desc").textContent = `${city.icon} ${city.desc}`;
+            hero.appendChild(clone);
+        }
     }
 
     const grid = document.getElementById("tilesGrid");
     if (grid) {
-        const t = city.details;
-        const tiles = [
-            { label: "Odczuwalna", value: t.felt + "°C", icon: "🌡️" },
-            { label: "Wilgotność", value: t.hum + "%", icon: "💧" },
-            { label: "Wiatr", value: t.wind + " km/h", icon: "💨" },
-            { label: "Opady", value: t.rain + " mm", icon: "🌧️" }
-        ];
+        grid.replaceChildren();
+        const tileTemplate = document.getElementById("tile-template");
+        
+        if (tileTemplate) {
+            const t = city.details;
+            const tiles = [
+                { label: "Odczuwalna", value: t.felt + "°C", icon: "🌡️" },
+                { label: "Wilgotność", value: t.hum + "%", icon: "💧" },
+                { label: "Wiatr", value: t.wind + " km/h", icon: "💨" },
+                { label: "Opady", value: t.rain + " mm", icon: "🌧️" }
+            ];
 
-        grid.innerHTML = tiles.map(tile => `
-            <div class="tile">
-                <div style="font-size:22px;margin-bottom:6px">${tile.icon}</div>
-                <div style="color:rgba(255,255,255,0.4);font-size:11px;margin-bottom:4px">${tile.label}</div>
-                <div style="color:white;font-size:20px;font-weight:300">${tile.value}</div>
-            </div>
-        `).join('');
+            tiles.forEach(tile => {
+                const clone = tileTemplate.content.cloneNode(true);
+                clone.querySelector(".tile-icon").textContent = tile.icon;
+                clone.querySelector(".tile-label").textContent = tile.label;
+                clone.querySelector(".tile-value").textContent = tile.value;
+                grid.appendChild(clone);
+            });
+        }
     }
 }
 
+// --- Obsługa Drag & Drop ---
 function handleDragStart(e) {
     draggedCityIndex = Number(e.currentTarget.dataset.index);
     e.currentTarget.classList.add('dragging');
@@ -136,7 +181,7 @@ function handleDragOver(e) {
 function handleDragEnter(e) {
     e.preventDefault();
     if (Number(e.currentTarget.dataset.index) !== draggedCityIndex) {
-        e.currentTarget.classList.add('drag-over');
+        e.currentTarget.classList.add('drag-over'); 
     }
 }
 function handleDragLeave(e) {
@@ -154,7 +199,6 @@ function handleDrop(e) {
     }
     return false;
 }
-
 function handleDragEnd(e) {
     e.currentTarget.classList.remove('dragging');
     const items = document.querySelectorAll('.city-item');

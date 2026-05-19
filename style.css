@@ -62,19 +62,6 @@ body {
   color: #4a9eff;
 }
 
-.user-avatar {
-  width: 30px;
-  height: 30px;
-  background: #4a9eff;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 11px;
-  font-weight: bold;
-  color: white;
-}
-
 .topbar {
   display: flex;
   align-items: center;
@@ -130,15 +117,6 @@ body {
 
 .city-name { color: white; font-size: 13px; font-weight: 500; }
 .city-temp { color: white; font-size: 15px; font-weight: 300; }
-
-.city-remove {
-  color: rgba(255, 255, 255, 0.2);
-  cursor: pointer;
-  font-size: 18px;
-  transition: 0.2s;
-}
-
-.city-remove:hover { color: #ff6b6b; }
 
 .add-city-form {
   padding: 15px;
@@ -262,6 +240,39 @@ body {
 .city-item.drag-over {
   border-top: 2px dashed #4a9eff;
   background: rgba(74, 158, 255, 0.1);
+}
+
+/* ================================================= */
+/* NOWE KLASY WYDZIELONE Z KODU JAVASCRIPT (INLINE)  */
+/* ================================================= */
+
+.hero-weather-container {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+.hero-desc {
+  padding-bottom: 16px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 18px;
+}
+
+.tile-icon {
+  font-size: 22px;
+  margin-bottom: 6px;
+}
+
+.tile-label {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 11px;
+  margin-bottom: 4px;
+}
+
+.tile-value {
+  color: white;
+  font-size: 20px;
+  font-weight: 300;
 }
 
 /* --- RESPONSYWNOŚĆ --- */
@@ -402,6 +413,7 @@ body {
     top: 100%;
     margin-top: 5px;
   }
+  
   .add-city-form {
     position: relative;
   }
