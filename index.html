@@ -6,6 +6,7 @@
   <title>Pogoda</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
@@ -13,10 +14,10 @@
   <nav class="navbar">
   <div class="nav-logo"><span>Weather</span></div>
   <ul class="nav-links">
-    <li><a href="#" class="active">Pulpit</a></li>
-    <li><a href="#">Mapy</a></li>
-    <li><a href="#">Statystyki</a></li>
-    <li><a href="#">Ustawienia</a></li>
+    <li><a href="#" id="nav-dashboard" class="active">Pulpit</a></li>
+    <li><a href="#" id="nav-maps">Mapy</a></li>
+    <li><a href="#" id="nav-stats">Statystyki</a></li>
+    <li><a href="#" id="nav-settings">Ustawienia</a></li>
   </ul>
   </nav>
 
@@ -40,11 +41,7 @@
     </div>
 
     <div class="main">
-      <div id="heroBlock"></div>
-      <div class="forecast-strip" id="forecastStrip"></div>
-      <div class="section-title">Szczegóły pogody</div>
-      <div class="tiles-grid" id="tilesGrid"></div>
-    </div>
+      </div>
   </div>
 
   <footer class="footer">

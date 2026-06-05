@@ -62,19 +62,6 @@ body {
   color: #4a9eff;
 }
 
-.user-avatar {
-  width: 30px;
-  height: 30px;
-  background: #4a9eff;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 11px;
-  font-weight: bold;
-  color: white;
-}
-
 .topbar {
   display: flex;
   align-items: center;
@@ -245,145 +232,78 @@ body {
 
 .footer-links a:hover { color: white; }
 
+/* --- WIDOK STATYSTYK --- */
+.stats-summary {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.stat-box {
+  flex: 1;
+  background: rgba(74, 158, 255, 0.1);
+  border: 1px solid rgba(74, 158, 255, 0.2);
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+}
+
+.stat-box-title {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.stat-box-value {
+  color: white;
+  font-size: 28px;
+  font-weight: 300;
+}
+
+.chart-container {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 30px;
+  position: relative;
+  height: 300px;
+  width: 100%;
+}
+
 /* --- RESPONSYWNOŚĆ --- */
 
 @media (max-width: 1280px) {
-  body {
-    padding: 0;
-    align-items: flex-start;
-  }
-
-  .app {
-    max-width: 100%;
-    min-height: 100dvh;
-    height: 100dvh;
-    border-radius: 0;
-  }
+  body { padding: 0; align-items: flex-start; }
+  .app { max-width: 100%; min-height: 100dvh; height: 100dvh; border-radius: 0; }
 }
 
 @media (max-width: 850px) {
-  body {
-    padding: 0;
-    align-items: flex-start;
-  }
-
-  .app {
-    max-width: 100%;
-    min-height: 100dvh;
-    height: 100dvh;
-    max-height: 100dvh;
-    border-radius: 0;
-  }
-
-  .body {
-    flex-direction: column;
-    overflow-y: auto;
-  }
-
-  .sidebar {
-    width: 100%;
-    border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-    flex: none;
-  }
-
-  .city-list {
-    display: flex;
-    flex-direction: row;
-    overflow-x: auto;
-    padding-bottom: 5px;
-    scrollbar-width: none; 
-  }
-  
-  .city-list::-webkit-scrollbar {
-    display: none; 
-  }
-
-  .city-item {
-    border-left: none;
-    border-bottom: 3px solid transparent;
-    min-width: 150px;
-    flex-shrink: 0; 
-  }
-
-  .city-item.active {
-    background: rgba(74, 158, 255, 0.1);
-    border-left-color: transparent;
-    border-bottom-color: #4a9eff;
-  }
-
-  .main {
-    overflow-y: visible;
-  }
+  body { padding: 0; align-items: flex-start; }
+  .app { max-width: 100%; min-height: 100dvh; height: 100dvh; max-height: 100dvh; border-radius: 0; }
+  .body { flex-direction: column; overflow-y: auto; }
+  .sidebar { width: 100%; border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.07); flex: none; }
+  .city-list { display: flex; flex-direction: row; overflow-x: auto; padding-bottom: 5px; scrollbar-width: none; }
+  .city-list::-webkit-scrollbar { display: none; }
+  .city-item { border-left: none; border-bottom: 3px solid transparent; min-width: 150px; flex-shrink: 0; }
+  .city-item.active { background: rgba(74, 158, 255, 0.1); border-left-color: transparent; border-bottom-color: #4a9eff; }
+  .main { overflow-y: visible; }
 }
 
 @media (max-width: 600px) {
-  body {
-    padding: 0;
-    align-items: flex-start;
-  }
-
-  .app {
-    border-radius: 0; 
-    min-height: 100vh;
-    height: 100dvh;
-    max-height: 100dvh;
-  }
-
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
-    padding: 15px;
-  }
-
-  .nav-links {
-    width: 100%;
-    justify-content: flex-start;
-    gap: 15px;
-    flex-wrap: wrap;
-  }
-
-  .hero-temp {
-    font-size: 60px;
-  }
-
-  .forecast-strip {
-    overflow-x: auto;
-    padding: 15px;
-    scrollbar-width: thin;
-  }
-
-  .fc-day {
-    min-width: 60px;
-  }
-
-  .tiles-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .footer {
-    flex-direction: column;
-    text-align: center;
-    gap: 12px;
-  }
-
-  .footer-links {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  }
-  
-  .footer-links a {
-    margin: 0 10px;
-  }
-
-  .city-suggestions {
-    bottom: auto;
-    top: 100%;
-    margin-top: 5px;
-  }
-  .add-city-form {
-    position: relative;
-  }
+  body { padding: 0; align-items: flex-start; }
+  .app { border-radius: 0; min-height: 100vh; height: 100dvh; max-height: 100dvh; }
+  .navbar { flex-direction: column; align-items: flex-start; gap: 15px; padding: 15px; }
+  .nav-links { width: 100%; justify-content: flex-start; gap: 15px; flex-wrap: wrap; }
+  .hero-temp { font-size: 60px; }
+  .forecast-strip { overflow-x: auto; padding: 15px; scrollbar-width: thin; }
+  .fc-day { min-width: 60px; }
+  .tiles-grid { grid-template-columns: 1fr; }
+  .footer { flex-direction: column; text-align: center; gap: 12px; }
+  .footer-links { display: flex; justify-content: center; width: 100%; }
+  .footer-links a { margin: 0 10px; }
+  .city-suggestions { bottom: auto; top: 100%; margin-top: 5px; }
+  .add-city-form { position: relative; }
+  .stats-summary { flex-direction: column; }
 }
