@@ -12,13 +12,13 @@
 
 <div class="app" id="app">
   <nav class="navbar">
-  <div class="nav-logo"><span>Weather</span></div>
-  <ul class="nav-links">
-    <li><a href="#" id="nav-dashboard" class="active">Pulpit</a></li>
-    <li><a href="#" id="nav-maps">Mapy</a></li>
-    <li><a href="#" id="nav-stats">Statystyki</a></li>
-    <li><a href="#" id="nav-settings">Ustawienia</a></li>
-  </ul>
+    <div class="nav-logo"><span>Weather</span></div>
+    <ul class="nav-links">
+      <li><a href="#" id="nav-dashboard" class="active">Pulpit</a></li>
+      <li><a href="#" id="nav-maps">Mapy</a></li>
+      <li><a href="#" id="nav-stats">Statystyki</a></li>
+      <li><a href="#" id="nav-settings">Ustawienia</a></li>
+    </ul>
   </nav>
 
   <div class="topbar">
@@ -40,7 +40,7 @@
       </div>
     </div>
 
-    <div class="main">
+    <div class="main" id="mainContent">
       </div>
   </div>
 
@@ -56,13 +56,72 @@
   </footer>
 </div>
 
-<div class="modal-overlay" id="modalOverlay">
-  <div class="modal">
-    <div class="modal-title"></div>
-    <div id="modalGrid"></div>
-    <div class="modal-cancel" id="modalCancel"></div>
+<template id="tpl-suggestion">
+  <div class="suggestion-item"></div>
+</template>
+
+<template id="tpl-city-item">
+  <div class="city-item">
+    <div class="city-left">
+      <div class="city-name"></div>
+    </div>
+    <div style="display:flex; align-items:center; gap:8px">
+      <div class="city-temp">...</div>
+      <div class="city-remove">×</div>
+    </div>
   </div>
-</div>
+</template>
+
+<template id="tpl-dashboard">
+  <div id="heroBlock">
+    <div class="hero-city"></div>
+    <div style="display:flex;align-items:flex-end;gap:16px">
+      <div class="hero-temp"></div>
+      <div class="hero-desc" style="padding-bottom:16px;color:rgba(255,255,255,0.55);font-size:18px"></div>
+    </div>
+  </div>
+  <div class="forecast-strip" id="forecastStrip"></div>
+  <div class="section-title">Szczegóły pogody</div>
+  <div class="tiles-grid" id="tilesGrid"></div>
+</template>
+
+<template id="tpl-forecast-day">
+  <div class="fc-day">
+    <div class="fc-label"></div>
+    <div class="fc-icon"></div>
+    <div class="fc-temp"></div>
+  </div>
+</template>
+
+<template id="tpl-tile">
+  <div class="tile">
+    <div class="tile-icon" style="font-size:22px;margin-bottom:6px"></div>
+    <div class="tile-label" style="color:rgba(255,255,255,0.4);font-size:11px;margin-bottom:4px"></div>
+    <div class="tile-value" style="color:white;font-size:20px;font-weight:300"></div>
+  </div>
+</template>
+
+<template id="tpl-stats">
+  <div class="hero-city stats-title"></div>
+  <div class="stats-summary" style="margin-top: 20px;">
+    <div class="stat-box">
+      <div class="stat-box-title">Średnia Max Temp.</div>
+      <div class="stat-box-value" id="statAvgMax"></div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-box-title">Średnia Min Temp.</div>
+      <div class="stat-box-value" id="statAvgMin"></div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-box-title">Prognozowane opady</div>
+      <div class="stat-box-value" id="statPrecip"></div>
+    </div>
+  </div>
+  <div class="section-title">Amplituda temperatur</div>
+  <div class="chart-container">
+    <canvas id="weatherChart"></canvas>
+  </div>
+</template>
 
 <script src="script.js"></script>
 </body>
