@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="script.js"></script>
+  <script defer src="script.js"></script>
 </head>
 <body>
 
@@ -93,7 +93,7 @@
 </template>
 
 <template id="tpl-tile">
-  <div class="tile">
+  <div class="tile" draggable="true">
     <div class="tile-icon" style="font-size:22px;margin-bottom:6px"></div>
     <div class="tile-label" style="color:rgba(255,255,255,0.4);font-size:11px;margin-bottom:4px"></div>
     <div class="tile-value" style="color:white;font-size:20px;font-weight:300"></div>

@@ -128,6 +128,7 @@ body {
   padding: 15px;
   background: #0a1525;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
 }
 
 .add-city-form input {
@@ -160,12 +161,6 @@ body {
 }
 
 .suggestion-item:hover { background: #4a9eff; }
-
-.main {
-  flex: 1;
-  padding: 30px;
-  overflow-y: auto;
-}
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -175,6 +170,11 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
+}
+.main {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
 }
 .main > * {
   animation: 0.5s fadeIn ease-out both;
@@ -238,6 +238,23 @@ body {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 16px;
   padding: 20px;
+  cursor: grab; 
+  transition: transform 0.2s, background 0.2s, border 0.2s;
+  border: 2px solid transparent;
+}
+.tile > * {
+  pointer-events: none;
+}
+.tile:active {
+  cursor: grabbing;
+}
+.tile.dragging {
+  opacity: 0.4;
+  transform: scale(0.95);
+}
+.tile.drag-over {
+  border: 2px dashed #4a9eff;
+  background: rgba(74, 158, 255, 0.1);
 }
 
 .footer {
