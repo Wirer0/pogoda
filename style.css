@@ -166,7 +166,19 @@ body {
   padding: 30px;
   overflow-y: auto;
 }
-
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.main > * {
+  animation: 0.5s fadeIn ease-out both;
+}
 .hero-city { color: white; font-size: 36px; font-weight: 300; margin-bottom: 10px; }
 .hero-temp { color: white; font-size: 80px; font-weight: 100; line-height: 1; }
 
